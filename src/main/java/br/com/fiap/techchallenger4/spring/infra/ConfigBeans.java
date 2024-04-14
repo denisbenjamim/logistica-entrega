@@ -10,7 +10,8 @@ import br.com.fiap.techchallenger4.logisticaentrega.dominio.service.EnderecoServ
 import br.com.fiap.techchallenger4.logisticaentrega.infra.repository.EnderecoRepositoryImplJPA;
 import br.com.fiap.techchallenger4.spring.repository.EnderecoRepositorySpring;
 import br.com.fiap.techchallenger4.spring.service.ConsumerCEP;
-
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Info;
 @Configuration
 public class ConfigBeans {
     
@@ -27,5 +28,15 @@ public class ConfigBeans {
     @Bean
     EnderecoRepository enderecoRepository(@Autowired EnderecoRepositorySpring repositorySpring){
         return new EnderecoRepositoryImplJPA(repositorySpring);
+    }
+
+    @Bean
+    OpenAPI openAPI() { 
+        return new OpenAPI()
+            .info(new Info()
+            .title("API de Logistica")
+            .version("v1")
+            .description("API de Logistica criada exclusivamente para o TechChallenge 4 da FIAP.")
+        );
     }
 }
