@@ -1,4 +1,4 @@
-package br.com.fiap.techchallenger4.logisticaentrega;
+package br.com.fiap.techchallenger4;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
