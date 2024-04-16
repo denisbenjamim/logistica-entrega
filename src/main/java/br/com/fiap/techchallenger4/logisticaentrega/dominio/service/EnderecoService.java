@@ -16,7 +16,7 @@ public class EnderecoService {
 		return new BuscarEndereco(repository).buscarPorCEP(cep);
     }
     
-    public Endereco salvarEndereco(Endereco endereco) {
+    public Endereco salvarEndereco(Endereco endereco) throws BusinessException {
     	return repository.criar(endereco);
     }
     

@@ -3,6 +3,7 @@ package br.com.fiap.techchallenger4.logisticaentrega.infra.repository;
 import org.springframework.util.ObjectUtils;
 
 import br.com.fiap.techchallenger4.logisticaentrega.dominio.entities.geo.Endereco;
+import br.com.fiap.techchallenger4.logisticaentrega.dominio.exception.BusinessException;
 import br.com.fiap.techchallenger4.logisticaentrega.dominio.repository.EnderecoRepository;
 import br.com.fiap.techchallenger4.logisticaentrega.infra.jpa.entity.EnderecoEntity;
 import br.com.fiap.techchallenger4.spring.repository.EnderecoRepositorySpring;
@@ -17,7 +18,7 @@ public class EnderecoRepositoryImplJPA implements EnderecoRepository {
     }
 
     @Override
-    public Endereco buscarPorCEP(String cep) {
+    public Endereco buscarPorCEP(String cep) throws BusinessException {
         final EnderecoEntity endereco = repositorySpring.findByCep(cep);
        
         if(ObjectUtils.isEmpty(endereco)){
@@ -27,7 +28,7 @@ public class EnderecoRepositoryImplJPA implements EnderecoRepository {
     }
 
 	@Override
-	public Endereco criar(Endereco endereco) {
+	public Endereco criar(Endereco endereco) throws BusinessException {
 		return repositorySpring.save(EnderecoEntity.to(endereco)).to();
 	}
     

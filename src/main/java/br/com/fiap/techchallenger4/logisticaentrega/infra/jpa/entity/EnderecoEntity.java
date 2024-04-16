@@ -3,6 +3,7 @@ package br.com.fiap.techchallenger4.logisticaentrega.infra.jpa.entity;
 import br.com.fiap.techchallenger4.logisticaentrega.dominio.entities.geo.Endereco;
 import br.com.fiap.techchallenger4.logisticaentrega.dominio.entities.geo.EstadoBrasil;
 import br.com.fiap.techchallenger4.logisticaentrega.dominio.entities.geo.TipoEnderecoEnum;
+import br.com.fiap.techchallenger4.logisticaentrega.dominio.exception.BusinessException;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -46,7 +47,7 @@ public class EnderecoEntity {
     @Column(name = "cd_tipo_endereco", nullable = false)
     private TipoEnderecoEnum tipoEndereco;
 
-    public Endereco to(){
+    public Endereco to() throws BusinessException{
         return new Endereco(cep, longitude, latitude, estado, nomeCidade, nomeBairro, nomeEndreco, tipoEndereco);
     }
     

@@ -4,6 +4,8 @@ import java.util.Objects;
 
 import org.springframework.util.ObjectUtils;
 
+import br.com.fiap.techchallenger4.logisticaentrega.dominio.exception.BusinessException;
+
 public class Endereco implements CEP{
     private final String cep;
     private final double longitude;
@@ -14,37 +16,35 @@ public class Endereco implements CEP{
     private final String nomeEndreco;
     private final TipoEnderecoEnum tipoEndereco;
 
-    public Endereco(String cep, double longitude, double latitude, EstadoBrasil estado, String nomeCidade, String nomeBairro, String nomeEndreco, TipoEnderecoEnum tipoEndereco) {
-        if(ObjectUtils.isEmpty(cep)){
-            throw new IllegalArgumentException("Nome da cidade é obrigatório");
-        }
+    public Endereco(String cep, double longitude, double latitude, EstadoBrasil estado, String nomeCidade, String nomeBairro, String nomeEndreco, TipoEnderecoEnum tipoEndereco) throws BusinessException {
+        cep = validarCEP(cep);
 
         if(longitude == 0){
-            throw new IllegalArgumentException("Longitude é obrigatório");
+            throw new BusinessException("Longitude é obrigatório");
         }
 
         if(latitude == 0){
-            throw new IllegalArgumentException("Latitude é obrigatória");
+            throw new BusinessException("Latitude é obrigatória");
         }
 
         if(Objects.isNull(estado)){
-            throw new IllegalArgumentException("Estado é obrigatório");
+            throw new BusinessException("Estado é obrigatório");
         }
 
         if(ObjectUtils.isEmpty(nomeCidade)){
-            throw new IllegalArgumentException("Nome da cidade é obrigatório");
+            throw new BusinessException("Nome da cidade é obrigatório");
         }
        
         if(ObjectUtils.isEmpty(nomeBairro)){
-            throw new IllegalArgumentException("Nome do bairro é obrigatório");
+            throw new BusinessException("Nome do bairro é obrigatório");
         }
 
         if(ObjectUtils.isEmpty(nomeEndreco)){
-            throw new IllegalArgumentException("Nome do endereço é obrigatório");
+            throw new BusinessException("Nome do endereço é obrigatório");
         }
 
         if(Objects.isNull(tipoEndereco)){
-            throw new IllegalArgumentException("Tipo do endereço é obrigatório");
+            throw new BusinessException("Tipo do endereço é obrigatório");
         }
        
         this.cep = cep;
@@ -55,6 +55,22 @@ public class Endereco implements CEP{
         this.nomeBairro = nomeBairro;
         this.nomeEndreco = nomeEndreco;
         this.tipoEndereco = tipoEndereco;
+    }
+
+    private String validarCEP(String cep) throws BusinessException {
+        if(cep == null || cep.isBlank()){
+            throw new BusinessException("CEP é obrigatório");
+        }
+
+        if(!cep.matches("\\d+")){
+            cep = cep.trim().replaceAll("[^\\d]", "");
+        }
+
+        if(cep.length() < 8){
+            throw new BusinessException("CEP deve ter 8 digitos");
+        }
+
+        return cep;
     }
 
     public double getLongitude() {

@@ -1,5 +1,7 @@
 package br.com.fiap.techchallenger4.logisticaentrega.dominio.entities.geo;
 
+import br.com.fiap.techchallenger4.logisticaentrega.dominio.exception.BusinessException;
+
 public interface CEP {
     
     public double getLongitude();
@@ -18,7 +20,7 @@ public interface CEP {
 
     public String getCep();
     
-    public default Endereco toEndereco() {
+    public default Endereco toEndereco() throws BusinessException {
     	return new Endereco(getCep(), getLongitude(), getLatitude(), getEstado(), getNomeCidade(), getNomeBairro(), getNomeEndreco(), getTipoEndereco());
     }
 }
