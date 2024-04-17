@@ -18,6 +18,6 @@ public class CriarEndereco {
             throw new BusinessException("Endereço é obrigatório na criaçao do mesmo");
         }
 
-        return repository.criar(null);
+        return repository.criar(endereco);
     }
 }

@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.text.Normalizer;
 import java.util.Arrays;
 
-import org.springframework.util.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.fasterxml.jackson.core.JacksonException;
 import com.fasterxml.jackson.core.JsonParser;
@@ -23,7 +23,7 @@ public class CustomTipoLogradouradoDeserializer extends StdDeserializer<TipoEnde
 
 	@Override
 	public TipoEnderecoEnum deserialize(JsonParser node, DeserializationContext ctxt) throws IOException, JacksonException {
-		if(StringUtils.hasText(node.getText())) {
+		if(!StringUtils.isAllBlank(node.getText())) {
 			for(TipoEnderecoEnum tipo : Arrays.asList(TipoEnderecoEnum.values())) {
 				if(normalizarTexto(tipo.getDescricao()).equalsIgnoreCase(normalizarTexto(node.getText()))) {
 					return tipo;

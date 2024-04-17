@@ -7,9 +7,11 @@ import br.com.fiap.techchallenger4.logisticaentrega.dominio.entities.geo.CEP;
 import br.com.fiap.techchallenger4.logisticaentrega.dominio.entities.geo.EstadoBrasil;
 import br.com.fiap.techchallenger4.logisticaentrega.dominio.entities.geo.TipoEnderecoEnum;
 import br.com.fiap.techchallenger4.spring.infra.CustomTipoLogradouradoDeserializer;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class CepAwesomeApi implements CEP{
 
 	private String cep;
