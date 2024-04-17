@@ -2,7 +2,7 @@ package br.com.fiap.techchallenger4.logisticaentrega.dominio.entities.geo;
 
 import java.util.Objects;
 
-import org.springframework.util.ObjectUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import br.com.fiap.techchallenger4.logisticaentrega.dominio.exception.BusinessException;
 
@@ -31,15 +31,16 @@ public class Endereco implements CEP{
             throw new BusinessException("Estado é obrigatório");
         }
 
-        if(ObjectUtils.isEmpty(nomeCidade)){
+        
+        if(StringUtils.isAllBlank(nomeCidade)){
             throw new BusinessException("Nome da cidade é obrigatório");
         }
        
-        if(ObjectUtils.isEmpty(nomeBairro)){
+        if(StringUtils.isAllBlank(nomeBairro)){
             throw new BusinessException("Nome do bairro é obrigatório");
         }
 
-        if(ObjectUtils.isEmpty(nomeEndreco)){
+        if(StringUtils.isAllBlank(nomeEndreco)){
             throw new BusinessException("Nome do endereço é obrigatório");
         }
 
@@ -57,8 +58,8 @@ public class Endereco implements CEP{
         this.tipoEndereco = tipoEndereco;
     }
 
-    private String validarCEP(String cep) throws BusinessException {
-        if(cep == null || cep.isBlank()){
+    String validarCEP(String cep) throws BusinessException {
+        if(StringUtils.isAllBlank(cep)){
             throw new BusinessException("CEP é obrigatório");
         }
 
@@ -66,7 +67,7 @@ public class Endereco implements CEP{
             cep = cep.trim().replaceAll("[^\\d]", "");
         }
 
-        if(cep.length() < 8){
+        if(cep.length() != 8){
             throw new BusinessException("CEP deve ter 8 digitos");
         }
 
