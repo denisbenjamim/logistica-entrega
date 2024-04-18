@@ -4,8 +4,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
+import br.com.fiap.estrutura.exception.BusinessException;
 import br.com.fiap.techchallenger4.logisticaentrega.dominio.entities.geo.CEP;
-import br.com.fiap.techchallenger4.logisticaentrega.dominio.exception.BusinessException;
 import br.com.fiap.techchallenger4.spring.consumer.CepAwesomeApi;
 import br.com.fiap.techchallenger4.spring.consumer.EndpointConsumer;
 
@@ -19,8 +19,7 @@ public class ConsumerCEP {
         
         try {
             return restTemplate.getForObject(end1.getUrlEndpoint(), CepAwesomeApi.class);
-        } catch (HttpClientErrorException e) {
-           
+        } catch (HttpClientErrorException e) {           
             throw new BusinessException(e.getMessage());
         }
     }

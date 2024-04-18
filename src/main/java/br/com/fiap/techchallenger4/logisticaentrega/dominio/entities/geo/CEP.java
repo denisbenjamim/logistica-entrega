@@ -1,6 +1,6 @@
 package br.com.fiap.techchallenger4.logisticaentrega.dominio.entities.geo;
 
-import br.com.fiap.techchallenger4.logisticaentrega.dominio.exception.BusinessException;
+import br.com.fiap.estrutura.exception.BusinessException;
 
 public interface CEP {
     

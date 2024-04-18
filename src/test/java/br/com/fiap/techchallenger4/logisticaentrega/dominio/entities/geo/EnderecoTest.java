@@ -8,17 +8,11 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import br.com.fiap.techchallenger4.logisticaentrega.dominio.exception.BusinessException;
+import br.com.fiap.estrutura.exception.BusinessException;
 
 class EnderecoTest {
 
-	@BeforeEach
-	void setUp() throws Exception {
-	}
-
-	@AfterEach
-	void tearDown() throws Exception {
-	}
+	
 
 	@Test
 	void deveInvalidarCepCasoQuantidadeDigitosAcimaOuBaixoEsperado() {

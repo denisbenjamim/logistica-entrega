@@ -1,7 +1,7 @@
 package br.com.fiap.techchallenger4.logisticaentrega.dominio.controller;
 
+import br.com.fiap.estrutura.exception.BusinessException;
 import br.com.fiap.techchallenger4.logisticaentrega.dominio.entities.geo.Endereco;
-import br.com.fiap.techchallenger4.logisticaentrega.dominio.exception.BusinessException;
 import br.com.fiap.techchallenger4.logisticaentrega.dominio.service.EnderecoService;
 import br.com.fiap.techchallenger4.spring.service.ConsumerCEP;
 

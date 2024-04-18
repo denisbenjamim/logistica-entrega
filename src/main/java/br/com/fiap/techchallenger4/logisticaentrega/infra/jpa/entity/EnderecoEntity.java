@@ -1,9 +1,9 @@
 package br.com.fiap.techchallenger4.logisticaentrega.infra.jpa.entity;
 
+import br.com.fiap.estrutura.exception.BusinessException;
 import br.com.fiap.techchallenger4.logisticaentrega.dominio.entities.geo.Endereco;
 import br.com.fiap.techchallenger4.logisticaentrega.dominio.entities.geo.EstadoBrasil;
 import br.com.fiap.techchallenger4.logisticaentrega.dominio.entities.geo.TipoEnderecoEnum;
-import br.com.fiap.techchallenger4.logisticaentrega.dominio.exception.BusinessException;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

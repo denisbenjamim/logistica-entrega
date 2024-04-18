@@ -4,7 +4,7 @@ import java.util.Objects;
 
 import org.apache.commons.lang3.StringUtils;
 
-import br.com.fiap.techchallenger4.logisticaentrega.dominio.exception.BusinessException;
+import br.com.fiap.estrutura.exception.BusinessException;
 
 public class Endereco implements CEP{
     private final String cep;
