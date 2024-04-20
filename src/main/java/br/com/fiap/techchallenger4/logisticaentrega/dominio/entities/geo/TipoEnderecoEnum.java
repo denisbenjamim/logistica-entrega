@@ -1,5 +1,7 @@
 package br.com.fiap.techchallenger4.logisticaentrega.dominio.entities.geo;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 public enum TipoEnderecoEnum {
     AREA("Área"),
     ACESSO("Acesso"),
@@ -186,6 +188,7 @@ public enum TipoEnderecoEnum {
         this.descricao = descricao;
     }
 
+    @JsonValue
     public String getDescricao() {
         return descricao;
     }
