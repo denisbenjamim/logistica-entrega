@@ -1,15 +1,20 @@
 package br.com.fiap.techchallenger4.logisticaentrega.dominio.entities.entrega;
 
 public class Entregador {
-    private String nome;
-    private String placa;
-    private String numeroTelefone;
+    private final String nome;
+    private final String cpf;
+    private final String numeroTelefone;
     
-    public String getNome() {
+    public Entregador(String nome, String cpf, String numeroTelefone) {
+		this.nome = nome;
+		this.cpf = cpf;
+		this.numeroTelefone = numeroTelefone;
+	}
+	public String getNome() {
         return nome;
     }
-    public String getPlaca() {
-        return placa;
+    public String getCpf() {
+        return cpf;
     }
     public String getNumeroTelefone() {
         return numeroTelefone;
