@@ -1,7 +1,11 @@
 package br.com.fiap.techchallenger4.logisticaentrega.dominio.entities.geo;
 
-import br.com.fiap.estrutura.exception.BusinessException;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
+import br.com.fiap.estrutura.exception.BusinessException;
+import br.com.fiap.techchallenger4.spring.consumer.CepAwesomeApi;
+
+@JsonDeserialize(as = CepAwesomeApi.class)
 public interface CEP {
     
     public double getLongitude();

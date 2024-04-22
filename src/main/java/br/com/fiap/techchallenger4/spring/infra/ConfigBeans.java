@@ -8,16 +8,16 @@ import br.com.fiap.techchallenger4.logisticaentrega.dominio.controller.EnderecoC
 import br.com.fiap.techchallenger4.logisticaentrega.dominio.repository.EnderecoRepository;
 import br.com.fiap.techchallenger4.logisticaentrega.dominio.service.EnderecoService;
 import br.com.fiap.techchallenger4.logisticaentrega.infra.repository.EnderecoRepositoryImplJPA;
+import br.com.fiap.techchallenger4.spring.consumer.CepConsumerFeignClient;
 import br.com.fiap.techchallenger4.spring.repository.EnderecoRepositorySpring;
-import br.com.fiap.techchallenger4.spring.service.ConsumerCEP;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 @Configuration
 public class ConfigBeans {
     
     @Bean
-    EnderecoController enderecoController(@Autowired EnderecoService enderecoService,@Autowired  ConsumerCEP consumerCEP){
-        return new EnderecoController(enderecoService, consumerCEP);
+    EnderecoController enderecoController(@Autowired EnderecoService enderecoService, CepConsumerFeignClient cepConsumerFeignClient){
+        return new EnderecoController(enderecoService, cepConsumerFeignClient);
     }
 
     @Bean
