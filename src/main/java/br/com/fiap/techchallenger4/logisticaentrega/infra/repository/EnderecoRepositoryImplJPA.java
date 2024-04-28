@@ -5,8 +5,8 @@ import org.springframework.util.ObjectUtils;
 import br.com.fiap.estrutura.exception.BusinessException;
 import br.com.fiap.techchallenger4.logisticaentrega.dominio.entities.geo.Endereco;
 import br.com.fiap.techchallenger4.logisticaentrega.dominio.repository.EnderecoRepository;
-import br.com.fiap.techchallenger4.logisticaentrega.infra.jpa.entity.EnderecoEntity;
-import br.com.fiap.techchallenger4.spring.repository.EnderecoRepositorySpring;
+import br.com.fiap.techchallenger4.spring.jpa.entity.EnderecoEntity;
+import br.com.fiap.techchallenger4.spring.jpa.repository.EnderecoRepositorySpring;
 
 public class EnderecoRepositoryImplJPA implements EnderecoRepository {
 

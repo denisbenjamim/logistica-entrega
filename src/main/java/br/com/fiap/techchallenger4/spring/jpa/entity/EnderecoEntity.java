@@ -1,4 +1,4 @@
-package br.com.fiap.techchallenger4.logisticaentrega.infra.jpa.entity;
+package br.com.fiap.techchallenger4.spring.jpa.entity;
 
 import br.com.fiap.estrutura.exception.BusinessException;
 import br.com.fiap.techchallenger4.logisticaentrega.dominio.entities.geo.Endereco;
@@ -56,5 +56,4 @@ public class EnderecoEntity {
     public static EnderecoEntity to(Endereco endereco) {
     	return new EnderecoEntity(endereco.getCep(), endereco.getLongitude(), endereco.getLatitude(), endereco.getEstado(), endereco.getNomeCidade(), endereco.getNomeBairro(), endereco.getNomeEndreco(), endereco.getTipoEndereco());
     }
-    
 }

@@ -5,24 +5,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Pedido {
-	private long codigoPedido;
-    private long codigoCliente;
-    private String statusPedido = "AGUARDANDO_ENVIO";
-    private LocalDateTime dataEnvio;
-    private List<Produto> itens = new ArrayList<>();
+	private final long codigoPedido;
+    private final long codigoCliente;
+    private final String statusPedido;
+    private final LocalDateTime dataEntrega;
+    private final LocalDateTime dataEnvio;
+    private final List<Produto> itens;
     
     private EnderecoPedido endereco;
 
 	public Pedido(
 		long codigoPedido, 
-		long codigoCliente, String statusPedido, LocalDateTime dataEnvio,
-			List<Produto> itens, EnderecoPedido endereco) {
+		long codigoCliente, 
+		String statusPedido, 
+		LocalDateTime dataEntrega,
+		LocalDateTime dataEnvio,
+		EnderecoPedido endereco,
+		List<Produto> itens
+	) {
 		this.codigoPedido = codigoPedido;
 		this.codigoCliente = codigoCliente;
 		this.statusPedido = statusPedido;
+		this.dataEntrega = dataEntrega;
 		this.dataEnvio = dataEnvio;
-		this.itens = itens;
 		this.endereco = endereco;
+		this.itens = itens == null ? new ArrayList<>() : itens;
 	}
 
 	public long getCodigoPedido() {
@@ -47,5 +54,9 @@ public class Pedido {
 
 	public EnderecoPedido getEndereco() {
 		return endereco;
+	}
+
+	public LocalDateTime getDataEntrega() {
+		return dataEntrega;
 	}
 }

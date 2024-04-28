@@ -9,7 +9,7 @@ import br.com.fiap.techchallenger4.logisticaentrega.dominio.repository.EnderecoR
 import br.com.fiap.techchallenger4.logisticaentrega.dominio.service.EnderecoService;
 import br.com.fiap.techchallenger4.logisticaentrega.infra.repository.EnderecoRepositoryImplJPA;
 import br.com.fiap.techchallenger4.spring.consumer.CepConsumerFeignClient;
-import br.com.fiap.techchallenger4.spring.repository.EnderecoRepositorySpring;
+import br.com.fiap.techchallenger4.spring.jpa.repository.EnderecoRepositorySpring;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 @Configuration
