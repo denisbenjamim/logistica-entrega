@@ -4,6 +4,7 @@ import br.com.fiap.estrutura.exception.BusinessException;
 import br.com.fiap.techchallenger4.logisticaentrega.dominio.entities.geo.Endereco;
 import br.com.fiap.techchallenger4.logisticaentrega.dominio.service.EnderecoService;
 import br.com.fiap.techchallenger4.spring.consumer.CepConsumerFeignClient;
+import feign.FeignException;
 
 public class EnderecoController {
     private final EnderecoService enderecoService;
@@ -17,8 +18,12 @@ public class EnderecoController {
     public Endereco getEnderecoPeloCep(final String cep) throws BusinessException{
         Endereco enderecoPeloCep = enderecoService.getEnderecoPeloCep(cep);
         if(enderecoPeloCep == null){
-        	enderecoPeloCep = cepConsumer.getPorCep(cep).toEndereco();
-        	enderecoPeloCep = enderecoService.salvarEndereco(enderecoPeloCep);
+        	try {
+	        	enderecoPeloCep = cepConsumer.getPorCep(cep).toEndereco();
+	        	enderecoPeloCep = enderecoService.salvarEndereco(enderecoPeloCep);
+        	}catch(FeignException.NotFound notFound) {
+        		throw new BusinessException(notFound.getMessage());
+        	}
         }
         return enderecoPeloCep;
     }

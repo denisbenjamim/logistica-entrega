@@ -72,8 +72,9 @@ class EnderecoControllerSpringTest {
 			.get("/buscarenderecos")
 		.then()
 			.statusCode(org.apache.http.HttpStatus.SC_BAD_REQUEST)
-			.body("message", is("404 Not Found: \"{\"code\":\"not_found\",\"message\":\"O CEP 11000000 nao foi encontrado\"}\""))
+			.body("message", is("[404 Not Found] during [GET] to [https://cep.awesomeapi.com.br/json/11000000] [CepConsumerFeignClient#getPorCep(String)]: [{\"code\":\"not_found\",\"message\":\"O CEP 11000000 nao foi encontrado\"}]"))
 		;
+		
 	}
 
 }
