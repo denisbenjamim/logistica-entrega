@@ -9,9 +9,7 @@ import br.com.fiap.techchallenger4.spring.jpa.entity.EnderecoEntity;
 import br.com.fiap.techchallenger4.spring.jpa.repository.EnderecoRepositorySpring;
 
 public class EnderecoRepositoryImplJPA implements EnderecoRepository {
-
     private final EnderecoRepositorySpring repositorySpring;
-
     
     public EnderecoRepositoryImplJPA(EnderecoRepositorySpring repositorySpring) {
         this.repositorySpring = repositorySpring;
