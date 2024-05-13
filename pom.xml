@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>br.com.fiap.techchallenger4</groupId>
-	<artifactId>logistica-entrega</artifactId>
+	<artifactId>mslogisticaentrega</artifactId>
 	<version>1.0.0</version>
-	<name>logistica-entrega</name>
+	<name>mslogisticaentrega</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>17</java.version>
@@ -115,4 +115,11 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+
+	<repositories>
+        <repository>
+            <id>project-repository</id>
+            <url>file://${project.basedir}/libs</url>
+        </repository>
+    </repositories>
 </project>
