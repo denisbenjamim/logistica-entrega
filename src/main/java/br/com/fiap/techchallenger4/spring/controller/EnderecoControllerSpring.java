@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,10 +20,10 @@ public class EnderecoControllerSpring {
     @Autowired
     private EnderecoController controller;
 
-    @GetMapping(path="/buscarenderecos", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(path="/buscarenderecos", produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiResponseSwaggerOk
     @Operation(summary = "Buscar endereço por CEP")
-    public ResponseEntity<?> get(@RequestParam final String cep){
+    public ResponseEntity<?> post(@RequestParam final String cep){
         return SpringControllerUtils.response(HttpStatus.OK, () -> controller.getEnderecoPeloCep(cep));
     }
 
