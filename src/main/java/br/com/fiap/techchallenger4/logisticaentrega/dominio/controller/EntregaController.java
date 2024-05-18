@@ -5,15 +5,29 @@ import br.com.fiap.techchallenger4.logisticaentrega.dominio.entities.entrega.Ent
 import br.com.fiap.techchallenger4.logisticaentrega.dominio.service.EntregaService;
 import br.com.fiap.techchallenger4.spring.jpa.entity.EntregaEntity;
 
+import java.util.List;
+
 public class EntregaController {
-    private final EntregaService service;
+    private final EntregaService entregaService;
 
     public EntregaController(EntregaService service) {
-        this.service = service;
+
+        this.entregaService = service;
     }
 
-    public EntregaEntity salvarEntregaEntity(EntregaEntity entregaEntity) throws BusinessException{
-        final Entrega salvarEntrega = service.salvarEntrega(entregaEntity.to());
-        return EntregaEntity.toEntity(salvarEntrega);
+    public Entrega atualizarEntrega(Long idEntrega, Long idEntregador) throws BusinessException{
+        final Entrega atualizarEntrega = entregaService.atualizarEntrega(idEntrega, idEntregador);
+        return atualizarEntrega;
+    }
+
+    public Entrega getEntregaPorId(final Long codigoEntrega) throws BusinessException{
+        Entrega entregaPorId = entregaService.getEntregaPorId(codigoEntrega);
+        return entregaPorId;
+    }
+
+    public List<Entrega> getAll() throws BusinessException{
+        List<Entrega> entrega = entregaService.getEntrega();
+        return entrega;
+
     }
 }

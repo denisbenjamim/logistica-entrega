@@ -1,17 +1,18 @@
 package br.com.fiap.techchallenger4.logisticaentrega.dominio.cases;
 
+import br.com.fiap.estrutura.exception.BusinessException;
 import br.com.fiap.techchallenger4.logisticaentrega.dominio.entities.entrega.Entrega;
 import br.com.fiap.techchallenger4.logisticaentrega.dominio.repository.EntregaRepository;
 
-public class CriarEntrega {
-    
+public class AtualizarEntrega {
+
     private final EntregaRepository repository;
 
-    public CriarEntrega(EntregaRepository repository) {
+    public AtualizarEntrega(EntregaRepository repository) {
         this.repository = repository;
     }
 
-    public Entrega executar(Entrega entrega){
-        return repository.criar(entrega);
+    public Entrega atualizar(Long idEntrega, Long idEntregador) throws BusinessException {
+        return repository.atualizar(idEntrega, idEntregador);
     }
 }

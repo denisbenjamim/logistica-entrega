@@ -54,6 +54,13 @@ public class EnderecoEntity {
     }
     
     public static EnderecoEntity to(Endereco endereco) {
-    	return new EnderecoEntity(endereco.getCep(), endereco.getLongitude(), endereco.getLatitude(), endereco.getEstado(), endereco.getNomeCidade(), endereco.getNomeBairro(), endereco.getNomeEndreco(), endereco.getTipoEndereco());
+    	return new EnderecoEntity(endereco.getCep(),
+                endereco.getLongitude(),
+                endereco.getLatitude(),
+                endereco.getEstado(),
+                endereco.getNomeCidade(),
+                endereco.getNomeBairro(),
+                endereco.getNomeEndreco(),
+                endereco.getTipoEndereco());
     }
 }

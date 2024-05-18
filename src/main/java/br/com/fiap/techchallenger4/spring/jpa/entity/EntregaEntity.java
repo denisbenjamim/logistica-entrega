@@ -2,18 +2,14 @@ package br.com.fiap.techchallenger4.spring.jpa.entity;
 
 import br.com.fiap.estrutura.exception.BusinessException;
 import br.com.fiap.techchallenger4.logisticaentrega.dominio.entities.entrega.Entrega;
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.time.LocalDateTime;
 
 
 @AllArgsConstructor
@@ -21,6 +17,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
+@Entity
 @Table(name = "tb_entrega")
 public class EntregaEntity {
 
@@ -37,6 +34,13 @@ public class EntregaEntity {
     @JoinColumn(name = "cd_pedido")
     private PedidoEntity pedido;
 
+    @Column(name = "data_entrega")
+    private LocalDateTime dataEntrega;
+
+    public EntregaEntity(PedidoEntity pedido) {
+        this.pedido = pedido;
+    }
+
     public Entrega to() throws BusinessException{
         return new Entrega(codigoEntrega, entregador.to(), pedido.to());
     }
@@ -47,5 +51,9 @@ public class EntregaEntity {
             .pedido(PedidoEntity.toEntity(entrega.getPedido()))
             .entregador(EntregadorEntity.toEntity(entrega.getEntregador()))
         .build();
+    }
+    @PrePersist
+    public void gravarDataEntrega(){
+        setDataEntrega(LocalDateTime.now());
     }
 }
