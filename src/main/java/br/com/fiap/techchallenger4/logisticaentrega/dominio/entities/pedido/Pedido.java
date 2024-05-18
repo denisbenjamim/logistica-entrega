@@ -5,14 +5,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Pedido {
-	private final long codigoPedido;
-    private final long codigoCliente;
-    private final String statusPedido;
-    private final LocalDateTime dataEntrega;
-    private final LocalDateTime dataEnvio;
-    private final List<Produto> itens;
+	private long codigoPedido;
+    private long codigoCliente;
+    private String statusPedido;
+    private LocalDateTime dataEntrega;
+    private LocalDateTime dataEnvio;
+    private List<Produto> itens;
     
     private EnderecoPedido endereco;
+
+	public Pedido(){}
 
 	public Pedido(
 		long codigoPedido, 

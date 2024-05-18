@@ -2,10 +2,12 @@ package br.com.fiap.techchallenger4.logisticaentrega.dominio.entities.pedido;
 
 public class EnderecoPedido  {
 
-	private final String numero;
-	private final String complemento;
-	private final String cep;
+	private String numero;
+	private String complemento;
+	private String cep;
 	
+	public EnderecoPedido(){}
+
 	public EnderecoPedido(String numero, String complemento, String cep) {
 		this.numero = numero;
 		this.complemento = complemento;
