@@ -8,7 +8,6 @@ import br.com.fiap.techchallenger4.logisticaentrega.dominio.repository.Entregado
 import br.com.fiap.techchallenger4.spring.jpa.entity.EntregaEntity;
 import br.com.fiap.techchallenger4.spring.jpa.entity.EntregadorEntity;
 import br.com.fiap.techchallenger4.spring.jpa.repository.EntregaRepositorySpring;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ObjectUtils;
 
 import java.util.ArrayList;
@@ -39,15 +38,19 @@ public class EntregaRepositoryImplJPA implements EntregaRepository {
         EntregaEntity entregaAtualizada = new EntregaEntity();
         entregaAtualizada.setEntregador(EntregadorEntity.toEntity(entregador));
 
-        //PosConstructor e PreConstructor JPA
-
         entregaRepositorySpring.save(entregaAtualizada);
         return entregaAtualizada.to();
     }
 
     @Override
     public Entrega buscarPorId(Long codigoEntrega) throws BusinessException {
+
+        if(codigoEntrega == null){
+            throw new BusinessException("Informe um código de entrega válido!");
+        }
+
         final EntregaEntity entrega = entregaRepositorySpring.findByCodigoEntrega(codigoEntrega);
+
         if(ObjectUtils.isEmpty(entrega)){
             return null;
         }

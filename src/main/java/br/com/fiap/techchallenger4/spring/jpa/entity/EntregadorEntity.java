@@ -1,9 +1,8 @@
 package br.com.fiap.techchallenger4.spring.jpa.entity;
 
+import br.com.fiap.estrutura.exception.BusinessException;
 import br.com.fiap.techchallenger4.logisticaentrega.dominio.entities.entrega.Entregador;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -36,7 +35,7 @@ public class EntregadorEntity {
         this.numeroTelefone = numeroTelefone;
     }
 
-    public Entregador to(){
+    public Entregador to() throws BusinessException {
         return new Entregador(idEntregador,nome, cpf, numeroTelefone);
     }
 

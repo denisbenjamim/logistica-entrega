@@ -20,6 +20,7 @@ public class EntregadorRepositoryImplJPA implements EntregadorRepository {
         return entregadorRepositorySpring.save(EntregadorEntity.toEntity(entregador)).to();
     }
 
+    @Override
     public Entregador buscarPorId(Long idEntregador) throws BusinessException {
         final EntregadorEntity entregador = entregadorRepositorySpring.findByIdEntregador(idEntregador);
         if (ObjectUtils.isEmpty(entregador)){

@@ -1,7 +1,6 @@
 package br.com.fiap.techchallenger4.spring.controller;
 
 import br.com.fiap.techchallenger4.spring.jpa.entity.EntregaEntity;
-import br.com.fiap.techchallenger4.spring.jpa.entity.EntregadorEntity;
 import br.com.fiap.techchallenger4.spring.jpa.repository.EntregaRepositorySpring;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
