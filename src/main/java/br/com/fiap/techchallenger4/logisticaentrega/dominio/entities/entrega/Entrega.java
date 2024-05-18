@@ -7,9 +7,13 @@ import br.com.fiap.techchallenger4.logisticaentrega.dominio.entities.pedido.Pedi
 import java.util.Objects;
 
 public class Entrega {
-	private final long codigoEntrega;
-    private final Entregador entregador;
-    private final Pedido pedido;
+	private long codigoEntrega;
+    private Entregador entregador;
+    private Pedido pedido;
+
+	
+
+	public Entrega() {}
 
 	public Entrega(long codigoEntrega, Entregador entregador, Pedido pedido) throws BusinessException {
         if(codigoEntrega <= 0){
@@ -24,7 +28,7 @@ public class Entrega {
 		this.pedido = pedido;
 	}
 
-	public Entregador getEntregador() {
+    public Entregador getEntregador() {
 		return entregador;
 	}
 
