@@ -13,6 +13,11 @@ public class AtualizarEntrega {
     }
 
     public Entrega atualizar(Long idEntrega, Long idEntregador) throws BusinessException {
+        if (idEntrega == null){
+            throw new BusinessException("Id da entrega deve ser válido");
+        } else if (idEntregador == null) {
+            throw new BusinessException("Id de entregador deve ser válido");
+        }
         return repository.atualizar(idEntrega, idEntregador);
     }
 }

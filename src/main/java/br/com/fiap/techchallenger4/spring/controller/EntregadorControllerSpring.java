@@ -5,7 +5,6 @@ import br.com.fiap.estrutura.swagger.annotations.responses.ApiResponseBadRequest
 import br.com.fiap.estrutura.swagger.annotations.responses.ApiResponseNoContentJson;
 import br.com.fiap.estrutura.utils.SpringControllerUtils;
 import br.com.fiap.techchallenger4.logisticaentrega.dominio.controller.EntregadorController;
-import br.com.fiap.techchallenger4.logisticaentrega.dominio.repository.EntregadorRepository;
 import br.com.fiap.techchallenger4.spring.jpa.entity.EntregadorEntity;
 import br.com.fiap.techchallenger4.spring.jpa.repository.EntregadorRepositorySpring;
 import io.swagger.v3.oas.annotations.Operation;
@@ -39,10 +38,8 @@ public class EntregadorControllerSpring {
     @ApiResponseNoContentJson
     @ApiResponseBadRequestJson
     @Operation(summary = "Cria um novo entregador")
-    public ResponseEntity<?> criarEntregador(@RequestBody final EntregadorEntity entregador) throws BusinessException {
-        if (entregador == null) {
-            throw new BusinessException("Informe parâmetros válidos para criar um entregador");
-       }
+    public ResponseEntity<?> criarEntregador(@RequestBody final EntregadorEntity entregador){
+
             return SpringControllerUtils.response(HttpStatus.OK, () -> entregadorController.criarEntregadorEntity(entregador));
 
     }

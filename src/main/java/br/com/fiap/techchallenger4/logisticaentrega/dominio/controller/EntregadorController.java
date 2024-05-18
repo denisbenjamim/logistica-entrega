@@ -14,12 +14,12 @@ public class EntregadorController {
     }
 
     public EntregadorEntity criarEntregadorEntity(EntregadorEntity entregadorEntity) throws BusinessException {
+
         final Entregador criarEntregador = entregadorService.criarEntregador(entregadorEntity.to());
         return EntregadorEntity.toEntity(criarEntregador);
     }
 
     public Entregador getEntregadorPorId(final Long idEntregador) throws BusinessException{
-        Entregador entrgadorPorId = entregadorService.getEntregadorPorId(idEntregador);
-        return entrgadorPorId;
+        return entregadorService.getEntregadorPorId(idEntregador);
     }
 }
