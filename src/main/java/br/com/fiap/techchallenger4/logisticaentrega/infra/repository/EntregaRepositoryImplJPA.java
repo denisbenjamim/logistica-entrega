@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.util.ObjectUtils;
 
 import br.com.fiap.estrutura.exception.BusinessException;
@@ -27,25 +28,42 @@ public class EntregaRepositoryImplJPA implements EntregaRepository {
         this.entregadorRepository = entregadorRepository;
     }
 
+    private void validarParametroNaoNuloOuZerado(Long parametro, String mensagemErro) throws BusinessException {
+        if(parametro == null || parametro == 0) {
+            throw new BusinessException(mensagemErro);
+        }
+    }
+
+    private void validarEntregaNaBase(EntregaEntity objeto) throws BusinessException{
+        if(objeto ==  null){
+            throw new BusinessException("Id da entrega inexistente");
+        }
+    }
     @Override
     public Entrega atualizar(Long idEntrega, Long idEntregador) throws BusinessException {
        
-        if(idEntregador == null) {
-            throw new BusinessException("Código entregador precisa ser válido.");
-        }
-        Entregador entregador = entregadorRepository.buscarPorId(idEntregador);
+        validarParametroNaoNuloOuZerado(idEntregador, "Código do entregador precisa ser válido.");
 
+        Entregador entregador = entregadorRepository.buscarPorId(idEntregador);
         if(entregador == null) {
             throw new BusinessException("Entregador inexistente");
         }
         
+        validarParametroNaoNuloOuZerado(idEntrega,"Id da entrega precisa ser válido!");
+
         EntregaEntity entregaAtualizada = entregaRepositorySpring.findByCodigoEntrega(idEntrega);
+        validarEntregaNaBase(entregaAtualizada);
+
         try {
             entregaAtualizada.setEntregador(EntregadorEntity.toEntity(entregador));
             entregaAtualizada = entregaRepositorySpring.save(entregaAtualizada);
-        }catch (Exception e) {
-            throw new TechnicalException(e);
-        }
+        }catch (DataIntegrityViolationException e) {
+            if (e.getMessage().contains("Unique index or primary key violation")) {
+                throw new BusinessException("O entregador já está vinculado a outra entrega.");
+            } else {
+                throw new BusinessException("Erro ao atualizar a entrega: " + e.getMessage());
+             }
+}
         
         return entregaAtualizada.to();
     }
@@ -53,15 +71,11 @@ public class EntregaRepositoryImplJPA implements EntregaRepository {
     @Override
     public Entrega buscarPorId(Long codigoEntrega) throws BusinessException {
         
-        if(codigoEntrega == null){
-            throw new BusinessException("Informe um código de entrega válido!");
-        }
+        validarParametroNaoNuloOuZerado(codigoEntrega, "Informe um código de entrega válido!");
 
         final EntregaEntity entrega = entregaRepositorySpring.findByCodigoEntrega(codigoEntrega);
+        
 
-        if(ObjectUtils.isEmpty(entrega)){
-            return null;
-        }
         return entrega.to();
     }
 
