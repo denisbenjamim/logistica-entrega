@@ -61,4 +61,5 @@ public class Pedido {
 	public LocalDateTime getDataEntrega() {
 		return dataEntrega;
 	}
+
 }

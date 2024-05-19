@@ -1,6 +1,15 @@
 package br.com.fiap.techchallenger4.logisticaentrega.infra.repository;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import javax.swing.text.html.Option;
+
+import org.springframework.util.ObjectUtils;
+
 import br.com.fiap.estrutura.exception.BusinessException;
+import br.com.fiap.estrutura.exception.TechnicalException;
 import br.com.fiap.techchallenger4.logisticaentrega.dominio.entities.entrega.Entrega;
 import br.com.fiap.techchallenger4.logisticaentrega.dominio.entities.entrega.Entregador;
 import br.com.fiap.techchallenger4.logisticaentrega.dominio.repository.EntregaRepository;
@@ -8,12 +17,10 @@ import br.com.fiap.techchallenger4.logisticaentrega.dominio.repository.Entregado
 import br.com.fiap.techchallenger4.spring.jpa.entity.EntregaEntity;
 import br.com.fiap.techchallenger4.spring.jpa.entity.EntregadorEntity;
 import br.com.fiap.techchallenger4.spring.jpa.repository.EntregaRepositorySpring;
-import org.springframework.util.ObjectUtils;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class EntregaRepositoryImplJPA implements EntregaRepository {
+
 
     private final EntregaRepositorySpring entregaRepositorySpring;
 
@@ -26,6 +33,8 @@ public class EntregaRepositoryImplJPA implements EntregaRepository {
 
     @Override
     public Entrega atualizar(Long idEntrega, Long idEntregador) throws BusinessException {
+        Optional<Entrega> eOption = buscarPorId(idEntrega);
+        if(eOption.isPresent())
 
         if(idEntregador == null) {
             throw new BusinessException("Código entregador precisa ser válido.");
@@ -35,16 +44,21 @@ public class EntregaRepositoryImplJPA implements EntregaRepository {
         if(entregador == null) {
             throw new BusinessException("Entregador inexistente");
         }
-        EntregaEntity entregaAtualizada = new EntregaEntity();
-        entregaAtualizada.setEntregador(EntregadorEntity.toEntity(entregador));
-
-        entregaRepositorySpring.save(entregaAtualizada);
+        
+        EntregaEntity entregaAtualizada = entregaRepositorySpring.findByCodigoEntrega(idEntrega);
+        try {
+            entregaAtualizada.setEntregador(EntregadorEntity.toEntity(entregador));
+            entregaAtualizada = entregaRepositorySpring.save(entregaAtualizada);
+        }catch (Exception e) {
+            throw new TechnicalException(e);
+        }
+        
         return entregaAtualizada.to();
     }
 
     @Override
     public Entrega buscarPorId(Long codigoEntrega) throws BusinessException {
-
+        
         if(codigoEntrega == null){
             throw new BusinessException("Informe um código de entrega válido!");
         }
@@ -59,12 +73,16 @@ public class EntregaRepositoryImplJPA implements EntregaRepository {
 
     @Override
     public List<Entrega> buscarEntregaSemData() throws BusinessException {
-        final List<EntregaEntity> entregaAll = entregaRepositorySpring.findAllByDataEntregaIsNull();
+
+        final List<EntregaEntity> entregaAll = entregaRepositorySpring.findAll();
         final List<Entrega> entregaList= new ArrayList<>();
 
         for(EntregaEntity entregaEntity: entregaAll) {
-            entregaList.add(entregaEntity.to());
+            entregaList.add(entregaEntity.toAll());
         }
         return entregaList;
     }
+
+    
+
 }

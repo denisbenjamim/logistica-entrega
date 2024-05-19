@@ -32,7 +32,7 @@ public class EntregaControllerSpring {
 
     @GetMapping(path = "/buscarEntregas", produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "Buscar entregas sem data prevista")
-    public ResponseEntity<?> getAll() throws BusinessException {
+    public ResponseEntity<?> getAllEntregas() throws BusinessException {
         List<Entrega> entregasAll = entregaController.getAll();
 
         return SpringControllerUtils.response(HttpStatus.OK, () -> entregasAll);
@@ -46,4 +46,5 @@ public class EntregaControllerSpring {
 
         return SpringControllerUtils.response(HttpStatus.OK, () -> entregaController.atualizarEntrega(idEntrega, idEntregador));
     }
+
 }

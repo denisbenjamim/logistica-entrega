@@ -14,12 +14,17 @@ public class EntregadorController {
     }
 
     public EntregadorEntity criarEntregadorEntity(EntregadorEntity entregadorEntity) throws BusinessException {
-
+        if(entregadorEntity.getIdEntregador() == null || entregadorEntity.getIdEntregador() == 0) {
+            throw new BusinessException("Id do entregador Inválido");
+        }
         final Entregador criarEntregador = entregadorService.criarEntregador(entregadorEntity.to());
         return EntregadorEntity.toEntity(criarEntregador);
     }
 
     public Entregador getEntregadorPorId(final Long idEntregador) throws BusinessException{
+        if(idEntregador == null || idEntregador== 0){
+            throw new BusinessException("Id de entregador inválido");
+        }
         return entregadorService.getEntregadorPorId(idEntregador);
     }
 }

@@ -20,7 +20,7 @@ public class EntregaService {
     }
 
     public Entrega getEntregaPorId(final Long codigoEntrega) throws BusinessException{
-        return new BuscarEntrega(repository).buscarPorId(codigoEntrega);
+            return new BuscarEntrega(repository).buscarPorId(codigoEntrega);
     }
 
     public List<Entrega> getEntrega() throws BusinessException{

@@ -11,21 +11,21 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table
+@Table (name = "tb_entregador")
 public class EntregadorEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idEntregador")
+    @Column(name = "id_entregador")
     private Long idEntregador;
 
-    @Column(name = "nome")
+    @Column
     private String nome;
 
-    @Column(name = "cpf")
+    @Column
     private String cpf;
 
-    @Column(name = "numeroTelefone")
+    @Column (name = "numero_telefone")
     private String numeroTelefone;
 
     public EntregadorEntity(Long idEntregador, String nome, String cpf, String numeroTelefone) {

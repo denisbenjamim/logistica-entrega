@@ -6,7 +6,6 @@ import br.com.fiap.estrutura.swagger.annotations.responses.ApiResponseNoContentJ
 import br.com.fiap.estrutura.utils.SpringControllerUtils;
 import br.com.fiap.techchallenger4.logisticaentrega.dominio.controller.EntregadorController;
 import br.com.fiap.techchallenger4.spring.jpa.entity.EntregadorEntity;
-import br.com.fiap.techchallenger4.spring.jpa.repository.EntregadorRepositorySpring;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,16 +21,13 @@ public class EntregadorControllerSpring {
     @Autowired
     private EntregadorController entregadorController;
 
-    @Autowired
-    private EntregadorRepositorySpring entregadorRepositorySpring;
 
     @GetMapping(path = "/buscarEntregador", produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "Buscar Entregador")
     public ResponseEntity<?> getEntregador(@RequestParam final Long idEntregador) throws BusinessException{
-        if(entregadorRepositorySpring.existsById(idEntregador)) {
+        
             return SpringControllerUtils.response(HttpStatus.OK, () -> entregadorController.getEntregadorPorId(idEntregador));
-        }
-        throw new BusinessException("Id de entregador inválido");
+
     }
 
     @PostMapping(path = "/criarEntregador", produces = MediaType.APPLICATION_JSON_VALUE)
