@@ -2,8 +2,6 @@ package br.com.fiap.techchallenger4.spring.controller;
 
 import br.com.fiap.estrutura.exception.BusinessException;
 import br.com.fiap.estrutura.swagger.annotations.ApiResponseSwaggerNoContent;
-import br.com.fiap.estrutura.swagger.annotations.responses.ApiResponseBadRequestJson;
-import br.com.fiap.estrutura.swagger.annotations.responses.ApiResponseNoContentJson;
 import br.com.fiap.estrutura.utils.SpringControllerUtils;
 import br.com.fiap.techchallenger4.logisticaentrega.dominio.controller.EntregaController;
 import br.com.fiap.techchallenger4.logisticaentrega.dominio.entities.entrega.Entrega;

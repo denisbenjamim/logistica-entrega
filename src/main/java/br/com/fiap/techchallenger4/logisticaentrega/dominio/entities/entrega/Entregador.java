@@ -43,9 +43,4 @@ public class Entregador {
     public String getNumeroTelefone() {
         return numeroTelefone;
     }
-
-    public Object toEntity() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'toEntity'");
-    }
 }

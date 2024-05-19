@@ -5,10 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.util.ObjectUtils;
-
 import br.com.fiap.estrutura.exception.BusinessException;
-import br.com.fiap.estrutura.exception.TechnicalException;
 import br.com.fiap.techchallenger4.logisticaentrega.dominio.entities.entrega.Entrega;
 import br.com.fiap.techchallenger4.logisticaentrega.dominio.entities.entrega.Entregador;
 import br.com.fiap.techchallenger4.logisticaentrega.dominio.repository.EntregaRepository;
