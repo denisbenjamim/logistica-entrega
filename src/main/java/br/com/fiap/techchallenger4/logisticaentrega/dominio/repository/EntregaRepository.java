@@ -8,7 +8,9 @@ import java.util.List;
 public interface EntregaRepository {
 
     public Entrega atualizar(Long idEntrega, Long idEntregador) throws BusinessException;
+    
     public Entrega buscarPorId(Long codigoEntrega) throws BusinessException;
 
     List<Entrega> buscarEntregaSemData() throws BusinessException;
+
 }

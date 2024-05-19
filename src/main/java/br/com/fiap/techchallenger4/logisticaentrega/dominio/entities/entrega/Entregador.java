@@ -13,8 +13,8 @@ public class Entregador {
     public Entregador(){}
 
     public Entregador(Long idEntregador, String nome, String cpf, String numeroTelefone) throws BusinessException {
-        if(idEntregador <= 0){
-            throw new BusinessException("Codigo do entregador nao pode ser menor ou igual a zero");
+        if(idEntregador == null){
+            throw new BusinessException("Codigo do entregador nao pode ser nulo");
         } else if (StringUtils.isAllBlank(nome)) {
             throw new BusinessException("Nome é obrigatório");
         } else if (StringUtils.isAllBlank(cpf)) {
@@ -42,5 +42,10 @@ public class Entregador {
 
     public String getNumeroTelefone() {
         return numeroTelefone;
+    }
+
+    public Object toEntity() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'toEntity'");
     }
 }

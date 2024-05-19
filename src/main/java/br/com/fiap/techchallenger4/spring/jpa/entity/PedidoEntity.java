@@ -17,6 +17,8 @@ import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ForeignKey;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Table;
@@ -30,22 +32,23 @@ import jakarta.persistence.UniqueConstraint;
 @Entity
 public class PedidoEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="cd_pedido", unique = true)
     private Long codigoPedido;
     
-    @Column(name="cd_cliente", nullable = false)
+    @Column(name="cd_cliente")
     private Long codigoCliente;
     
-    @Column(name = "dt_criacao", nullable = false)
+    @Column(name = "dt_criacao")
     private LocalDateTime dataCriacao;
     
-    @Column(name = "ds_status_pedido", nullable = false)
+    @Column(name = "ds_status_pedido")
     private String statusPedido;
 
-    @Column(name = "cd_cep", nullable = false)
+    @Column(name = "cd_cep")
     private String cep;
 
-    @Column(name = "nr_endereco", nullable = false)
+    @Column(name = "nr_endereco")
     private String numeroEndereco;
 
     @Column(name = "ds_complemento_endereco")

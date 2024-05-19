@@ -7,6 +7,7 @@ import br.com.fiap.techchallenger4.logisticaentrega.dominio.service.EntregaServi
 import java.util.List;
 
 public class EntregaController {
+
     private final EntregaService entregaService;
 
     public EntregaController(EntregaService service) {
@@ -15,20 +16,15 @@ public class EntregaController {
     }
 
     public Entrega atualizarEntrega(Long idEntrega, Long idEntregador) throws BusinessException{
-
-        if(idEntrega == null){
-            throw new BusinessException("Informe um id de entrega válido!");
-        } else if (idEntregador == null) {
-            throw new BusinessException("Informe um id de entregador válido");
-        }
+      
         return entregaService.atualizarEntrega(idEntrega, idEntregador);
     }
 
     public Entrega getEntregaPorId(final Long codigoEntrega) throws BusinessException{
-
-        if(codigoEntrega == null){
+        
+        if(codigoEntrega == null || codigoEntrega == 0){
             throw new BusinessException("Informe um código de entrega válido!");
-        }
+        } 
         return entregaService.getEntregaPorId(codigoEntrega);
     }
 
@@ -38,6 +34,5 @@ public class EntregaController {
             throw new BusinessException("Nenhuma entrega encontrada!");
         }
         return entrega;
-
     }
 }

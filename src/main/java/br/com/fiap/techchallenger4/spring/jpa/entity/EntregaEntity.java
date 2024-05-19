@@ -4,7 +4,6 @@ import br.com.fiap.estrutura.exception.BusinessException;
 import br.com.fiap.techchallenger4.logisticaentrega.dominio.entities.entrega.Entrega;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,7 +15,6 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Getter
 @Setter
-@Builder
 @Entity
 @Table(name = "tb_entrega")
 public class EntregaEntity {
@@ -45,15 +43,21 @@ public class EntregaEntity {
         return new Entrega(codigoEntrega, entregador.to(), pedido.to());
     }
 
+    public Entrega toAll() throws BusinessException{
+        return new Entrega(this.codigoEntrega, this.entregador.to(), this.pedido.to());
+    }
+
     public static EntregaEntity toEntity(Entrega entrega){
-        return EntregaEntity.builder()
-            .codigoEntrega(entrega.getCodigoEntrega())
-            .pedido(PedidoEntity.toEntity(entrega.getPedido()))
-            .entregador(EntregadorEntity.toEntity(entrega.getEntregador()))
-        .build();
+        return new EntregaEntity(entrega.getCodigoEntrega(),
+        EntregadorEntity.toEntity(entrega.getEntregador()),
+        PedidoEntity.toEntity(entrega.getPedido()));
     }
     @PrePersist
     public void gravarDataEntrega(){
         setDataEntrega(LocalDateTime.now());
+    }
+
+    public EntregaEntity(long codigoEntrega2, EntregadorEntity entregadorEntity, PedidoEntity pedidoEntity) {
+        
     }
 }
