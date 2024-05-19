@@ -66,11 +66,11 @@ public class EntregaControllerSpringTest {
         
         given()
             .param("idEntrega", 1L)
-            .param("idEntregador", 1L)
+            .param("idEntregador", 2L)
         .when()
             .put("/atualizarEntrega")
         .then()
-            .statusCode(HttpStatus.SC_OK);
+            .statusCode(HttpStatus.SC_NO_CONTENT);
     }
 
    

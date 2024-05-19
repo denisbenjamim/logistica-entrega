@@ -53,7 +53,7 @@ public class PedidoEntityTest {
                             LocalDateTime.now(), 
                             null, 
                             new EnderecoPedido("123", "Complemento", "12345-678"), 
-                            Arrays.asList(new Produto("001", 2), new Produto("002", 3)) 
+                            Arrays.asList(new Produto(1, 2), new Produto(2, 3)) 
                        );
 
         PedidoEntity pedidoEntity = PedidoEntity.toEntity(pedido);

@@ -67,7 +67,6 @@ public class EntregadorControllerSpringTest {
     @Test
     void deveCriarEntregador() {
         EntregadorEntity inputEntity = new EntregadorEntity();
-        inputEntity.setIdEntregador(1L);
         inputEntity.setNome("Nome");
         inputEntity.setCpf("12345678");
         inputEntity.setNumeroTelefone("6185203215");

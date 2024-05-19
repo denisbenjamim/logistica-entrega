@@ -13,9 +13,7 @@ public class Entregador {
     public Entregador(){}
 
     public Entregador(Long idEntregador, String nome, String cpf, String numeroTelefone) throws BusinessException {
-        if(idEntregador == null){
-            throw new BusinessException("Codigo do entregador nao pode ser nulo");
-        } else if (StringUtils.isAllBlank(nome)) {
+        if (StringUtils.isAllBlank(nome)) {
             throw new BusinessException("Nome é obrigatório");
         } else if (StringUtils.isAllBlank(cpf)) {
             throw new BusinessException("CPF é obrigatório");

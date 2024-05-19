@@ -11,9 +11,6 @@ public class Produto {
 		this.quantidade = quantidade;
 	}
 	
-	public Produto(String string, int quantidade2) {
-    }
-
     public long getCodigoProduto() {
 		return codigoProduto;
 	}

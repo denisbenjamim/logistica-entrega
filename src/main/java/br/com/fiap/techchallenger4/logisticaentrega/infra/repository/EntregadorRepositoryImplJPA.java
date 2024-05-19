@@ -17,12 +17,8 @@ public class EntregadorRepositoryImplJPA implements EntregadorRepository {
 
     @Override
     public Entregador criar(Entregador entregador) throws BusinessException {
-        String cpf = entregador.getCpf();
-        Long id = entregador.getIdEntregador();
-        if(entregadorRepositorySpring.existsByCpf(cpf)) {
+        if(entregadorRepositorySpring.existsByCpf(entregador.getCpf())) {
             throw new BusinessException("CPF já em uso por outro entregador");
-        } else if(entregadorRepositorySpring.existsById(id)){
-            throw new BusinessException("Id já existente na base de dados");
         }
         return entregadorRepositorySpring.save(EntregadorEntity.toEntity(entregador)).to();
     }

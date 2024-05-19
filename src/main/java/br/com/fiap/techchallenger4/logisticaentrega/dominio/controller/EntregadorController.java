@@ -14,9 +14,6 @@ public class EntregadorController {
     }
 
     public EntregadorEntity criarEntregadorEntity(EntregadorEntity entregadorEntity) throws BusinessException {
-        if(entregadorEntity.getIdEntregador() == null || entregadorEntity.getIdEntregador() == 0) {
-            throw new BusinessException("Id do entregador Inválido");
-        } 
         final Entregador criarEntregador = entregadorService.criarEntregador(entregadorEntity.to());
         return EntregadorEntity.toEntity(criarEntregador);
     }

@@ -25,19 +25,6 @@ public class EntregadorTest {
     }
 
     @Test
-    public void testConstructorWithNullId() {
-        String nome = "John Doe";
-        String cpf = "123.456.789-00";
-        String numeroTelefone = "1234567890";
-
-        Exception exception = assertThrows(BusinessException.class, () -> {
-            new Entregador(null, nome, cpf, numeroTelefone);
-        });
-
-        assertEquals("Codigo do entregador nao pode ser nulo", exception.getMessage());
-    }
-
-    @Test
     public void testConstructorWithBlankNome() {
         Long id = 1L;
         String cpf = "123.456.789-00";
