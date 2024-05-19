@@ -2,9 +2,6 @@ package br.com.fiap.techchallenger4.logisticaentrega.infra.repository;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-
-import javax.swing.text.html.Option;
 
 import org.springframework.util.ObjectUtils;
 
@@ -33,9 +30,7 @@ public class EntregaRepositoryImplJPA implements EntregaRepository {
 
     @Override
     public Entrega atualizar(Long idEntrega, Long idEntregador) throws BusinessException {
-        Optional<Entrega> eOption = buscarPorId(idEntrega);
-        if(eOption.isPresent())
-
+       
         if(idEntregador == null) {
             throw new BusinessException("Código entregador precisa ser válido.");
         }
