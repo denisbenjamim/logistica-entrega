@@ -16,8 +16,11 @@ public class EntregaController {
     }
 
     public Entrega atualizarEntrega(Long idEntrega, Long idEntregador) throws BusinessException{
-      
         return entregaService.atualizarEntrega(idEntrega, idEntregador);
+    }
+
+    public void encerrarEntrega(Long idEntrega) throws BusinessException{
+        entregaService.encerrarEntrega(idEntrega);
     }
 
     public Entrega getEntregaPorId(final Long codigoEntrega) throws BusinessException{

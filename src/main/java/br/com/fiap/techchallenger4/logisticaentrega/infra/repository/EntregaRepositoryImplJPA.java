@@ -1,5 +1,6 @@
 package br.com.fiap.techchallenger4.logisticaentrega.infra.repository;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,8 +18,6 @@ import br.com.fiap.techchallenger4.spring.jpa.repository.EntregaRepositorySpring
 
 
 public class EntregaRepositoryImplJPA implements EntregaRepository {
-
-
     private final EntregaRepositorySpring entregaRepositorySpring;
 
     private final EntregadorRepository entregadorRepository;
@@ -76,6 +75,19 @@ public class EntregaRepositoryImplJPA implements EntregaRepository {
         }
         
         return entregaList;
+    }
+
+    @Override
+    public void encerrar(Long idEntrega) throws BusinessException {
+        final EntregaEntity entregaAtualizada = entregaRepositorySpring.findByCodigoEntrega(idEntrega);
+        
+        if(entregaAtualizada == null){
+            throw new BusinessException("Não foi possivel encontrar a entrega de Codigo "+idEntrega);
+        }
+
+        entregaAtualizada.setDataEntrega(LocalDateTime.now());
+
+        entregaRepositorySpring.save(entregaAtualizada);
     }
 
     

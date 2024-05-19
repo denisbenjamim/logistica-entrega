@@ -25,11 +25,11 @@ public class EntregaEntity {
     @Column(name="cd_entrega")
     private Long codigoEntrega;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "cd_entregador")
     private EntregadorEntity entregador;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "cd_pedido")
     private PedidoEntity pedido;
 
@@ -58,10 +58,6 @@ public class EntregaEntity {
         return new EntregaEntity(entrega.getCodigoEntrega(),
         EntregadorEntity.toEntity(entrega.getEntregador()),
         PedidoEntity.toEntity(entrega.getPedido()));
-    }
-    @PrePersist
-    public void gravarDataEntrega(){
-        setDataEntrega(LocalDateTime.now());
     }
 
     public EntregaEntity(long codigoEntrega, EntregadorEntity entregador, PedidoEntity pedido) {

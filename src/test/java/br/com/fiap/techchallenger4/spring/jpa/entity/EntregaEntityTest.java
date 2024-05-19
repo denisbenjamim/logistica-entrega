@@ -31,7 +31,6 @@ public class EntregaEntityTest {
     @Test
     void testPrePersist() {
         EntregaEntity entregaEntity = new EntregaEntity();
-        entregaEntity.gravarDataEntrega();
 
         assertNotNull(entregaEntity.getDataEntrega());
         LocalDateTime now = LocalDateTime.now();

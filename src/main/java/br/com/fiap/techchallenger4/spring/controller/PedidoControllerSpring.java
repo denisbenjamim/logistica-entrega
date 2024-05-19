@@ -36,8 +36,8 @@ public class PedidoControllerSpring {
 
         return SpringControllerUtils.response(HttpStatus.NO_CONTENT, () -> {
             if(pedido.getStatusPedido().equalsIgnoreCase("AGUARDANDO_ENTREGA")){
-            	pedidoRepository.save(pedido);
-                entregaRepository.save(new EntregaEntity(pedido));
+            	    final PedidoEntity pedidoEntity = pedidoRepository.save(pedido);
+                    entregaRepository.save(new EntregaEntity(pedidoEntity));
                 return null;
             }
             throw new BusinessException("Apenas pedidos com status Aguardando Entrega, podem ser enviados para logistica");

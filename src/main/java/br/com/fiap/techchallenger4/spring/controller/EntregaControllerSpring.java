@@ -1,6 +1,7 @@
 package br.com.fiap.techchallenger4.spring.controller;
 
 import br.com.fiap.estrutura.exception.BusinessException;
+import br.com.fiap.estrutura.swagger.annotations.ApiResponseSwaggerNoContent;
 import br.com.fiap.estrutura.swagger.annotations.responses.ApiResponseBadRequestJson;
 import br.com.fiap.estrutura.swagger.annotations.responses.ApiResponseNoContentJson;
 import br.com.fiap.estrutura.utils.SpringControllerUtils;
@@ -38,13 +39,24 @@ public class EntregaControllerSpring {
         return SpringControllerUtils.response(HttpStatus.OK, () -> entregasAll);
     }
 
-    @PutMapping(path = "/atualizarEntrega", produces = MediaType.APPLICATION_JSON_VALUE)
-    @ApiResponseNoContentJson
-    @ApiResponseBadRequestJson
+    @PutMapping(path = "/atualizarEntrega")
+    @ApiResponseSwaggerNoContent
     @Operation(summary = "Atualiza entrega vinculando entregador")
     public ResponseEntity<?> atualizarEntrega(@RequestParam Long idEntrega, @RequestParam Long idEntregador) {
+        return SpringControllerUtils.response(HttpStatus.NO_CONTENT, () -> {
+            entregaController.atualizarEntrega(idEntrega, idEntregador);
+            return null;
+        });
+    }
 
-        return SpringControllerUtils.response(HttpStatus.OK, () -> entregaController.atualizarEntrega(idEntrega, idEntregador));
+    @PutMapping(path = "/encerrarEntrega")
+    @ApiResponseSwaggerNoContent
+    @Operation(summary = "Encerra uma entrega")
+    public ResponseEntity<?> atualizarEntrega(@RequestParam Long idEntrega) {
+        return SpringControllerUtils.response(HttpStatus.NO_CONTENT, () -> {
+            entregaController.encerrarEntrega(idEntrega);
+            return null;
+        });
     }
 
 }

@@ -11,6 +11,8 @@ public interface EntregaRepository {
     
     public Entrega buscarPorId(Long codigoEntrega) throws BusinessException;
 
-    List<Entrega> buscarEntregaSemData() throws BusinessException;
+    public List<Entrega> buscarEntregaSemData() throws BusinessException;
+
+    public void encerrar(Long idEntrega) throws BusinessException;
 
 }
