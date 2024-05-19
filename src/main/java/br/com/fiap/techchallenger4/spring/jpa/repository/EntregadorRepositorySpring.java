@@ -7,4 +7,6 @@ public interface EntregadorRepositorySpring extends JpaRepository<EntregadorEnti
 
     public EntregadorEntity findByIdEntregador(Long idEntregador);
 
+    public boolean existsByCpf(String cpf);
+
 }
