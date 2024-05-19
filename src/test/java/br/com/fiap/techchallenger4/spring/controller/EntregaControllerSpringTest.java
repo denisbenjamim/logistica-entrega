@@ -20,9 +20,7 @@ public class EntregaControllerSpringTest {
     void setUp() {
         RestAssured.port = porta;
         RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
-       
     }
-
 
     @Test
     void deveBuscarEntregaPorId() {
@@ -36,10 +34,8 @@ public class EntregaControllerSpringTest {
 
     @Test
     void naoDeveBuscarEntregaSeIdForNull() {
-
-       Long codigoEntrega = null;
         given()
-            .param("codigoEntrega", codigoEntrega)
+            .param("codigoEntrega", (Long)null)
         .when()
             .get("/buscarEntregasId")
         .then()
@@ -58,16 +54,11 @@ public class EntregaControllerSpringTest {
 
     @Test
     void deveBuscarTodasAsEntregas() {
-        
         given()
-            .param("idEntrega", 1)
-            .param("idEntrega", 2)
-            .param("idEntrega", 3)
-            
-        .when()
-            .get("/buscarEntregas")
-        .then()
-            .statusCode(HttpStatus.SC_OK); 
+            .when()
+                .get("/buscarEntregas")
+            .then()
+                .statusCode(HttpStatus.SC_OK); 
     }
 
     @Test

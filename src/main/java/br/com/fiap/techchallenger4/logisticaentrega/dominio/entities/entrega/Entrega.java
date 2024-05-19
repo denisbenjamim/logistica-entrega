@@ -11,16 +11,14 @@ public class Entrega {
     private Entregador entregador;
     private Pedido pedido;
 
-	
-
 	public Entrega() {}
 
 	public Entrega(long codigoEntrega, Entregador entregador, Pedido pedido) throws BusinessException {
         if(codigoEntrega <= 0){
 			throw new BusinessException("Codigo de Entrega nao pode ser menor ou igual a zero");
-		} else if (Objects.isNull(entregador)) {
-			throw new BusinessException("Código entregador é obrigatório");
-		} else if (Objects.isNull(pedido)) {
+		} 
+		
+		if (Objects.isNull(pedido)) {
 			throw new BusinessException("Código pedido é obrigatório");
 		}
 		this.codigoEntrega = codigoEntrega;

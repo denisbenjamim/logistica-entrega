@@ -2,6 +2,7 @@ package br.com.fiap.techchallenger4.spring.jpa.entity;
 
 import br.com.fiap.estrutura.exception.BusinessException;
 import br.com.fiap.techchallenger4.logisticaentrega.dominio.entities.entrega.Entrega;
+import br.com.fiap.techchallenger4.logisticaentrega.dominio.entities.entrega.Entregador;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -44,7 +45,13 @@ public class EntregaEntity {
     }
 
     public Entrega toAll() throws BusinessException{
-        return new Entrega(this.codigoEntrega, this.entregador.to(), this.pedido.to());
+        Entregador entragadorBean = null;
+        
+        if(entregador != null){
+            entragadorBean =  entregador.to();
+        }
+
+        return new Entrega(this.codigoEntrega, entragadorBean, pedido.to());
     }
 
     public static EntregaEntity toEntity(Entrega entrega){
@@ -57,7 +64,9 @@ public class EntregaEntity {
         setDataEntrega(LocalDateTime.now());
     }
 
-    public EntregaEntity(long codigoEntrega2, EntregadorEntity entregadorEntity, PedidoEntity pedidoEntity) {
-        
+    public EntregaEntity(long codigoEntrega, EntregadorEntity entregador, PedidoEntity pedido) {
+        this.codigoEntrega = codigoEntrega;
+        this.entregador = entregador;
+        this.pedido = pedido;
     }
 }

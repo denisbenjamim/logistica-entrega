@@ -68,13 +68,13 @@ public class EntregaRepositoryImplJPA implements EntregaRepository {
 
     @Override
     public List<Entrega> buscarEntregaSemData() throws BusinessException {
-
         final List<EntregaEntity> entregaAll = entregaRepositorySpring.findAll();
         final List<Entrega> entregaList= new ArrayList<>();
 
         for(EntregaEntity entregaEntity: entregaAll) {
             entregaList.add(entregaEntity.toAll());
         }
+        
         return entregaList;
     }
 
